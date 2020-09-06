@@ -53,7 +53,7 @@ public class ViewMovieDetailsFragment extends Fragment {
         }
         MovieServiceAPI movieServiceAPI = retrofit.create(MovieServiceAPI.class);
 
-        Call<GetMovieDetailsResponse> call = movieServiceAPI.getMovieDetails(movieId, API_KEY, "BR", "pt-BR");
+        Call<GetMovieDetailsResponse> call = movieServiceAPI.getMovieDetails("movieId", API_KEY, "BR", "pt-BR");
 
         call.enqueue(new Callback<GetMovieDetailsResponse>() {
             @Override
