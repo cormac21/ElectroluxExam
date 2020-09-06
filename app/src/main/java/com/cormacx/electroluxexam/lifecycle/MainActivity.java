@@ -1,8 +1,10 @@
-package com.cormacx.electroluxexam;
+package com.cormacx.electroluxexam.lifecycle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.cormacx.electroluxexam.R;
 
 import retrofit2.Retrofit;
 

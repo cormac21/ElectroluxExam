@@ -1,4 +1,4 @@
-package com.cormacx.electroluxexam;
+package com.cormacx.electroluxexam.lifecycle;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +14,12 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cormacx.electroluxexam.MovieRecyclerViewAdapter;
+import com.cormacx.electroluxexam.network.MovieServiceAPI;
+import com.cormacx.electroluxexam.R;
+import com.cormacx.electroluxexam.network.GetUpcomingMoviesResponse;
+import com.cormacx.electroluxexam.network.Movie;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,12 +28,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.cormacx.electroluxexam.AppConstants.API_KEY;
+import static com.cormacx.electroluxexam.AppConstants.BASE_URL;
+
 public class HomeFragment extends Fragment implements MovieRecyclerViewAdapter.OnMovieListener {
 
     private static final String TAG = "HomeFragment";
-
-    public static final String BASE_URL = "https://api.themoviedb.org/3/";
-    private final static String API_KEY = "b0c73ad07cee89803fbb29675ce01190";
 
     private static Retrofit retrofit = null;
 
@@ -90,7 +96,6 @@ public class HomeFragment extends Fragment implements MovieRecyclerViewAdapter.O
 
             @Override
             public void onFailure(Call<GetUpcomingMoviesResponse> call, Throwable t) {
-
 
             }
         });
