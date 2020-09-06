@@ -3,10 +3,14 @@ package com.cormacx.electroluxexam;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.cormacx.electroluxexam.network.Movie;
 
 import java.util.List;
 
@@ -41,6 +45,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final View view;
+        public final ImageView moviePosterView;
         public final TextView idView;
         public final TextView titleView;
         public Movie item;
@@ -49,9 +54,12 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         public ViewHolder(View view, OnMovieListener onMovieListener) {
             super(view);
             this.view = view;
-            idView = (TextView) view.findViewById(R.id.item_number);
+            idView = (TextView) view.findViewById(R.id.movie_id);
+            moviePosterView = (ImageView) view.findViewById(R.id.movie_poster_image);
             titleView = (TextView) view.findViewById(R.id.movie_title);
             this.movieListener = onMovieListener;
+
+            Glide.with(view).load("https://image.tmdb.org/t/p/w185".concat(item.poster_path)).into(moviePosterView);
 
             view.setOnClickListener(this);
         }

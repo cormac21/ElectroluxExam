@@ -1,17 +1,15 @@
-package com.cormacx.electroluxexam;
-
-import com.google.gson.annotations.SerializedName;
+package com.cormacx.electroluxexam.network;
 
 import java.util.List;
 
 public class GetUpcomingMoviesResponse {
-    @SerializedName("page")
+
     private int page;
-    @SerializedName("results")
+
     private List<Movie> results;
-    @SerializedName("total_results")
+
     private int totalResults;
-    @SerializedName("total_pages")
+
     private int totalPages;
 
     public int getPage() {
