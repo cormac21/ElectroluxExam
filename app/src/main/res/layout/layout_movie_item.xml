@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="2dp"
-    app:cardElevation="10dp"
+    app:cardElevation="5dp"
     app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,11 +14,12 @@
         <ImageView
             android:id="@+id/movie_poster_image"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
             android:layout_margin="0dp"
             android:adjustViewBounds="true"
             android:padding="0dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +52,13 @@
                 android:textSize="24sp"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/movie_release_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:textSize="18sp"
+                android:textAppearance="?attr/textAppearanceListItem"/>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

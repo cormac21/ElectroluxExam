@@ -16,7 +16,7 @@ public class GetMovieDetailsResponse {
 
     private String homepage;
 
-    private Float id;
+    private String id;
 
     private String imdb_id = null;
 
@@ -26,7 +26,7 @@ public class GetMovieDetailsResponse {
 
     private String overview;
 
-    private Float popularity;
+    private String popularity;
 
     private String poster_path;
 
@@ -36,9 +36,9 @@ public class GetMovieDetailsResponse {
 
     private String release_date;
 
-    private Float revenue;
+    private String revenue;
 
-    private Float runtime;
+    private String runtime;
 
     ArrayList<Object> spoken_languages = new ArrayList<Object>();
 
@@ -50,9 +50,9 @@ public class GetMovieDetailsResponse {
 
     private Boolean video;
 
-    private Float vote_average;
+    private String vote_average;
 
-    private Float vote_count;
+    private String vote_count;
 
     public Boolean getAdult() {
         return adult;
@@ -102,11 +102,11 @@ public class GetMovieDetailsResponse {
         this.homepage = homepage;
     }
 
-    public Float getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Float id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -142,11 +142,11 @@ public class GetMovieDetailsResponse {
         this.overview = overview;
     }
 
-    public Float getPopularity() {
+    public String getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(Float popularity) {
+    public void setPopularity(String popularity) {
         this.popularity = popularity;
     }
 
@@ -182,19 +182,19 @@ public class GetMovieDetailsResponse {
         this.release_date = release_date;
     }
 
-    public Float getRevenue() {
+    public String getRevenue() {
         return revenue;
     }
 
-    public void setRevenue(Float revenue) {
+    public void setRevenue(String revenue) {
         this.revenue = revenue;
     }
 
-    public Float getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
 
-    public void setRuntime(Float runtime) {
+    public void setRuntime(String runtime) {
         this.runtime = runtime;
     }
 
@@ -238,19 +238,19 @@ public class GetMovieDetailsResponse {
         this.video = video;
     }
 
-    public Float getVote_average() {
+    public String getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(Float vote_average) {
+    public void setVote_average(String vote_average) {
         this.vote_average = vote_average;
     }
 
-    public Float getVote_count() {
+    public String getVote_count() {
         return vote_count;
     }
 
-    public void setVote_count(Float vote_count) {
+    public void setVote_count(String vote_count) {
         this.vote_count = vote_count;
     }
 }

@@ -2,9 +2,9 @@ package com.cormacx.electroluxexam.network;
 
 public class Movie {
 
-    public Integer popularity;
+    public String popularity;
 
-    public Integer vote_count;
+    public String vote_count;
 
     public Boolean video;
 
@@ -22,25 +22,25 @@ public class Movie {
 
     public String title;
 
-    public Integer vote_average;
+    public String vote_average;
 
     public String overview;
 
     public String release_date;
 
-    public Integer getPopularity() {
+    public String getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(Integer popularity) {
+    public void setPopularity(String popularity) {
         this.popularity = popularity;
     }
 
-    public Integer getVote_count() {
+    public String getVote_count() {
         return vote_count;
     }
 
-    public void setVote_count(Integer vote_count) {
+    public void setVote_count(String vote_count) {
         this.vote_count = vote_count;
     }
 
@@ -108,11 +108,11 @@ public class Movie {
         this.title = title;
     }
 
-    public Integer getVote_average() {
+    public String getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(Integer vote_average) {
+    public void setVote_average(String vote_average) {
         this.vote_average = vote_average;
     }
 

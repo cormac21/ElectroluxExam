@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cormacx.electroluxexam.MovieRecyclerViewAdapter;
+import com.cormacx.electroluxexam.SpacingDecoration;
 import com.cormacx.electroluxexam.network.MovieServiceAPI;
 import com.cormacx.electroluxexam.R;
 import com.cormacx.electroluxexam.network.GetUpcomingMoviesResponse;
 import com.cormacx.electroluxexam.network.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -53,7 +54,10 @@ public class HomeFragment extends Fragment implements MovieRecyclerViewAdapter.O
     private void initializeRecyclerView(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.movie_list_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        SpacingDecoration deco = new SpacingDecoration(30);
+        mRecyclerView.addItemDecoration(deco);
+        mAdapter = new MovieRecyclerViewAdapter(new ArrayList<Movie>(), this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -69,14 +73,6 @@ public class HomeFragment extends Fragment implements MovieRecyclerViewAdapter.O
         super.onViewCreated(view, savedInstanceState);
         initializeRecyclerView(view);
         connectAndGetApiData();
-
-        Button goToMovieDetailsButton = (Button) view.findViewById(R.id.go_to_movie_details_button);
-        goToMovieDetailsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OnMovieClick(view, "577922");
-            }
-        });
     }
 
     public void connectAndGetApiData() {
@@ -90,13 +86,13 @@ public class HomeFragment extends Fragment implements MovieRecyclerViewAdapter.O
             @Override
             public void onResponse(Call<GetUpcomingMoviesResponse> call, Response<GetUpcomingMoviesResponse> response) {
                 List<Movie> movieList = response.body().getResults();
-                mAdapter = new MovieRecyclerViewAdapter(movieList, (MovieRecyclerViewAdapter.OnMovieListener) getParentFragmentManager().findFragmentById(R.id.homeFragment));
-                mRecyclerView.setAdapter(mAdapter);
+                mAdapter.setValues(movieList);
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<GetUpcomingMoviesResponse> call, Throwable t) {
-
+                Log.e(TAG, "onFailure: call failed", t);
             }
         });
     }

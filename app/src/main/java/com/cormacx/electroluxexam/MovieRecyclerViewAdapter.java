@@ -7,10 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cormacx.electroluxexam.network.Movie;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -33,9 +36,11 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.item = mValues.get(position);
-        holder.idView.setText(mValues.get(position).id);
-        holder.titleView.setText(mValues.get(position).title);
+        holder.bindViewHolder(mValues.get(position));
+    }
+
+    public void setValues(List<Movie> mValues) {
+        this.mValues = mValues;
     }
 
     @Override
@@ -48,6 +53,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         public final ImageView moviePosterView;
         public final TextView idView;
         public final TextView titleView;
+        public final TextView releaseDateView;
         public Movie item;
         OnMovieListener movieListener;
 
@@ -57,10 +63,8 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
             idView = (TextView) view.findViewById(R.id.movie_id);
             moviePosterView = (ImageView) view.findViewById(R.id.movie_poster_image);
             titleView = (TextView) view.findViewById(R.id.movie_title);
+            releaseDateView = (TextView) view.findViewById(R.id.movie_release_date);
             this.movieListener = onMovieListener;
-
-            Glide.with(view).load("https://image.tmdb.org/t/p/w185".concat(item.poster_path)).into(moviePosterView);
-
             view.setOnClickListener(this);
         }
 
@@ -71,7 +75,19 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
         @Override
         public void onClick(View view) {
-            movieListener.OnMovieClick(view, mValues.get(getAdapterPosition()).id);
+            Integer position = getAdapterPosition();
+            movieListener.OnMovieClick(view, mValues.get(position).id);
+        }
+
+        public void bindViewHolder(Movie movie) {
+            idView.setText(movie.id);
+            titleView.setText(movie.title);
+            releaseDateView.setText("Nos cinemas em: ".concat(movie.release_date));
+            if( movie.backdrop_path != null ) {
+                Glide.with(view).load("https://image.tmdb.org/t/p/w185".concat(movie.backdrop_path)).into(moviePosterView);
+            } else {
+                Glide.with(view).load(R.mipmap.shrug).into(moviePosterView);
+            }
         }
     }
 
